@@ -18,7 +18,8 @@ describe InstagramConnect do
 
       it 'returns list of images' do
         result = InstagramConnect::Photos.near(param)
-        expect(JSON.parse(result.body)["data"]).to be_a Array
+        expect(result).to be_a Array
+        expect(result.first.location.name).to be_a String
       end
     end
   end
