@@ -36,7 +36,7 @@ class InstagramConnect
         req.headers['Accept'] = 'application/json'
         req.params['lat'] = location.latitude
         req.params['lng'] = location.longitude
-        req.params['distance'] = location.distance * 1000
+        req.params['distance'] = location.distance.to_i * 1000
         req.params['access_token'] = InstagramConnect.instance.config.token
       end
 

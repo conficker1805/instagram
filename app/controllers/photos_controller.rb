@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
     location = Location.create_with(location_params)
 
     if location.valid?
-      # @result = Instagram::Photos.near(location)
+      @photos = InstagramConnect::Photos.near(location)
     else
       flash[:alert] = location.errors.first.join(" ")
       render 'application/index'

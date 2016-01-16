@@ -22,5 +22,16 @@ describe InstagramConnect do
         expect(result.first.location.name).to be_a String
       end
     end
+
+    context 'distance is empty' do
+      let(:location) { attributes_for :location, distance: '' }
+      let(:param) { Location.create_with(location) }
+
+      it 'returns list of images' do
+        result = InstagramConnect::Photos.near(param)
+        expect(result).to be_a Array
+        expect(result.first.location.name).to be_a String
+      end
+    end
   end
 end
