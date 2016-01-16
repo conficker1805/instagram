@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Template
 gem 'slim'
 
+# Attributes mapping
+gem 'virtus'
+
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.5'
 
