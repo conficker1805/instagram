@@ -12,8 +12,8 @@
     infowindow = new google.maps.InfoWindow()
 
     google.maps.event.addListener map, "click", (event) ->
-      $('#location_lat').val(event.latLng.lat())
-      $('#location_lng').val(event.latLng.lng())
+      $('#location_latitude').val(event.latLng.lat())
+      $('#location_longitude').val(event.latLng.lng())
       infowindow.close()
 
     createMarker = (location) ->

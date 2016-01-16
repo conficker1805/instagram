@@ -16,7 +16,7 @@ describe Location, type: :model do
     let(:params) { {latitude: 50, longitude: 50} }
 
     it "returns location object" do
-      expect(Location.create_with(params).latitude).to eq 40
+      expect(Location.create_with(params).latitude).to eq 50
     end
   end
 end
