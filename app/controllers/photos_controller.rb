@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
       @photos = InstagramConnect::Photos.near(location)
     else
       flash[:alert] = location.errors.first.join(" ")
-      render 'application/index'
+      redirect_to root_path(location: location_params)
     end
   end
 

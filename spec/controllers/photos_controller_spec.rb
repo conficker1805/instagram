@@ -11,7 +11,7 @@ describe PhotosController do
 
       it 'should be redirect and render error' do
         do_request
-        expect(response).to render_template 'application/index'
+        expect(response).to redirect_to root_path(location: params)
         expect(flash[:alert]).not_to be_nil
       end
     end

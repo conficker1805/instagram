@@ -6,4 +6,8 @@ module ParamHelper
   def longitude_param
     params[:location]["longitude"] if params[:location]
   end
+
+  def distance_param
+    params[:location]["distance"] if params[:location]
+  end
 end

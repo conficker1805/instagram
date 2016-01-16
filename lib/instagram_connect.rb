@@ -30,13 +30,14 @@ class InstagramConnect
         faraday.adapter Faraday.default_adapter
       end
 
+      distance = location.distance.present? ? location.distance.to_i * 1000 : 1000
       result = @connection.get do |req|
         req.url "/#{ InstagramConnect.instance.config.version }/media/search/"
         req.headers['Content-Type'] = 'application/json'
         req.headers['Accept'] = 'application/json'
         req.params['lat'] = location.latitude
         req.params['lng'] = location.longitude
-        req.params['distance'] = location.distance.to_i * 1000
+        req.params['distance'] = distance
         req.params['access_token'] = InstagramConnect.instance.config.token
       end
 

@@ -8,10 +8,13 @@
       .col-md-5
         h1 Search photos near
         = form_for :location, url: photos_path, method: :get do |f|
-          = f.text_field :lat, class: 'form-control', placeholder: 'Latitude'
-          = f.text_field :lng, class: 'form-control', placeholder: 'Longitude'
-          = f.text_field :distance, class: 'form-control', placeholder: 'Distance (kilometer)'
+          = f.text_field :latitude, class: 'form-control', placeholder: 'Latitude', value: latitude_param
+          = f.text_field :longitude, class: 'form-control', placeholder: 'Longitude', value: longitude_param
+          = f.text_field :distance, class: 'form-control', placeholder: 'Distance (kilometer)', value: distance_param
           = f.submit 'Search', class: 'btn btn-default'
+    .row
+      .col-md-12
+        h3 Images
 
 coffee:
   $(document).ready ->
