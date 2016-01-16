@@ -43,7 +43,11 @@ group :development, :test do
   gem 'byebug'
   gem 'factory_girl_rails'
   gem 'dotenv-rails'
-  gem 'byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
+end
+
+group :test do
+  gem 'webmock'
+  gem 'shoulda-matchers', '~> 3.0'
 end
