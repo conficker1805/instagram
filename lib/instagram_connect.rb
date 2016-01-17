@@ -4,6 +4,8 @@ class InstagramConnect
   include Singleton
   attr_reader :config, :connection
 
+  ACCESS_TOKEN_INVALID = 400
+
   def self.configure
     yield(instance.config) if block_given?
   end
@@ -41,7 +43,12 @@ class InstagramConnect
         req.params['access_token'] = InstagramConnect.instance.config.token
       end
 
-      Mapper::InstagramMedia.new.(result)
+      result = JSON.parse(result.body)
+      if result["meta"]["code"] == ACCESS_TOKEN_INVALID
+        raise APIError
+      else
+        Mapper::InstagramMedia.new.(result)
+      end
     end
   end
 end
@@ -49,8 +56,13 @@ end
 module Mapper
   class InstagramMedia
     def call(result)
-      data = JSON.parse(result.body)["data"]
-      photos = data.map { |photo| InstagramPhotoEntity.new(photo)}
+      photos = result["data"].map { |photo| InstagramPhotoEntity.new(photo)}
     end
+  end
+end
+
+class APIError < StandardError
+  def initialize(message = "API Error")
+    super(message)
   end
 end
