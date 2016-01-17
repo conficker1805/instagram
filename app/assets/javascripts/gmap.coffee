@@ -1,5 +1,6 @@
 @googleMap = {
   initialize: (locations = []) ->
+    locations = $.parseJSON(locations)
     gmarkers = [];
     mapOptions = {
       zoom: 2,

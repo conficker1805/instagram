@@ -15,8 +15,15 @@
     .row
       .col-md-12
         h3 Images
+      - markers = []
+      - @photos.each do |p|
+        - add_markers(markers, p)
+        .col-md-2.img-wrap
+          = link_to image_tag(p.images.thumbnail), p.link
+    .hide#array-markers
+      = markers.to_json
 
 coffee:
   $(document).ready ->
-    googleMap.initialize()
-
+    markers = $('#array-markers').text()
+    googleMap.initialize(markers)
