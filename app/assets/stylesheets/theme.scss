@@ -9,5 +9,12 @@
 
   .img-wrap {
     margin-bottom: 15px;
+    display: none;
+    float: left;
   }
+
+  .img-wrap.show {
+    display: block;
+  }
+
 }

@@ -25,7 +25,7 @@
 
       google.maps.event.addListener(marker, 'click', () ->
         map.panTo marker.getPosition()
-        map.setZoom 12
+        map.setZoom 15
         infowindow.setContent location[0]
         infowindow.open map, marker
       )

@@ -18,8 +18,9 @@
       - markers = []
       - @photos.each do |p|
         - add_markers(markers, p)
-        .col-md-2.img-wrap
-          = link_to image_tag(p.images.thumbnail), p.link
+        .col-md-2.img-wrap page="#{instagram_paginator(markers)}"
+          = link_to image_tag(p.images.thumbnail), p.link, target: "_blank"
+    #pagination.pagination-sm total-page="#{markers.count/12}"
     .hide#array-markers
       = markers.to_json
 
@@ -27,3 +28,20 @@ coffee:
   $(document).ready ->
     markers = $('#array-markers').text()
     googleMap.initialize(markers)
+
+    pagination = ->
+      active_elm = $('.img-wrap.active')
+      current_page = active_elm.attr('page')
+      next_page = parseInt(current_page) + 1
+      active_elm.addClass('show').nextUntil($('.img-wrap[page=' + next_page + ']')).addClass 'show'
+
+    $('.img-wrap').first().addClass 'active'
+    pagination()
+    $('#pagination').twbsPagination
+      totalPages: $(".img-wrap[page!='']").last().attr('page')
+      onPageClick: (event, page) ->
+        $('.img-wrap').removeClass 'show active'
+        $('.img-wrap[page=' + page + ']').addClass 'active'
+        pagination()
+
+
